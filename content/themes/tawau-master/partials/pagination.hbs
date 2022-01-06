@@ -1,0 +1,15 @@
+{{!-- Load more button - Visible only if it's enabled in main.js --}}
+<button id="load-posts" class="btn" data-posts_per_page="{{@config.posts_per_page}}">{{t "Load more posts"}}</button>
+
+{{!-- Pagination --}}
+<nav class="pagination" role="navigation">
+	<div class="container">
+	    {{#if prev}}
+	        <a class="newer-posts" href="{{page_url prev}}"><b>{{t "Newer"}}</b></a>
+	    {{/if}}
+	    <span class="page-number">{{t "{page} of {pages}" page=page pages=pages}}</span>
+	    {{#if next}}
+	        <a class="older-posts" href="{{page_url next}}"><b>{{t "Older"}}</b></a>
+	    {{/if}}
+	</div>
+</nav>

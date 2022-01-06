@@ -1,0 +1,77 @@
+{{!-- The tag below means - insert everything in this file into the {body} of the default.hbs template --}}
+{{!< default}}
+
+{{!-- Everything inside the #post tags pulls data from the post --}}
+{{#post}}
+
+    <main id="content" class="container content-inner" role="main" data-id={{comment_id}}>
+        <article class="{{post_class}}">
+            <div class="post-meta">
+                <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMMM YYYY"}}</time>
+                <div class="tags">{{tags}}</div>
+            </div>
+            <h1 class="post-title">{{title}}</h1>
+            <div class="content-holder">
+                {{#if feature_image}}
+                    <a href="{{img_url feature_image}}" class="zoom">
+                        <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
+                    </a>
+                {{/if}}
+            </div>
+            <section class="post-content content-holder">
+
+                <div class="editor-content">{{content}}</div>
+
+                <div class="social-share">
+                    <span>{{t "Share"}}</span>
+                    <a class="twitter" href="https://twitter.com/intent/tweet/?text={{encode title}}&url={{url absolute="true"}}" target="_blank" title="{{t "Share on Twitter"}}"></a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}" target="_blank" title="{{t "Share on Facebook"}}"></a>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <div class="post-footer">
+        <div class="tags">{{tags}}</div>
+
+        {{!-- Everything inside the #author tags pulls data from the author --}}
+        {{#if authors}}
+            <section class="authors">
+                {{#foreach authors}}
+                    <section class="author container">
+                        {{#if profile_image}}
+                        <figure class="author-image">
+                            <a class="img" href="{{url}}" title="{{name}}"><img src="{{img_url profile_image size="xs"}}" alt="{{name}}"></a>
+                        </figure>
+                        {{/if}}
+
+                        <h4><a href="{{url}}">{{name}}</a></h4>
+
+                        {{#if bio}}
+                            <p>{{bio}}</p>
+                        {{else}}
+                            <p>{{{t "Read <a href='{url}'>more posts</a> by this author" url=(url)}}}.</p>
+                        {{/if}}
+                        <div class="author-meta">
+                            {{#if location}}<span class="author-location">{{location}}</span>{{/if}}
+                            {{#if website}}<span class="author-link"><a href="{{website}}" target="_blank" rel="noopener noreferrer">{{website}}</a></span>{{/if}}
+                        </div>
+                        <div class="social">
+                            {{#if twitter}}<a href="{{twitter_url}}" class="twitter" title="{{twitter}}" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>{{/if}}
+                            {{#if facebook}}<a href="{{facebook_url}}" class="facebook" title="{{facebook}}" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>{{/if}}
+                        </div>
+                    </section>
+                {{/foreach}}
+            </section>
+        {{/if}}
+
+        <div class="comments"></div>
+    </div>
+
+    <div class="tooltip tooltip--smaug" data-type="smaug">
+        <div class="tooltip-base"> 
+            <div class="tooltip-content"></div>
+        </div>
+    </div>
+
+{{/post}}

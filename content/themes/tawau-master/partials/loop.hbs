@@ -1,0 +1,22 @@
+{{!-- This is the post loop - each post will be output using this markup --}}
+{{#foreach posts}}
+<article class="{{post_class}}">
+    <div class="post-meta">
+        <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMMM YYYY"}}</time>
+        <div class="tags">{{tags}}</div>
+    </div>
+    <h2 class="post-title"><a href="{{url}}" title="{{title}}">{{title}}</a></h2>
+    <div class="content-holder">
+        {{#if feature_image}}
+            <a href="{{url}}" title="{{title}}" class="img-holder">
+                <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
+            </a>
+        {{/if}}
+        <p>
+            {{excerpt words="44"}}
+        </p>
+    </div>
+    <a class="read-more btn" href="{{url}}" title="{{title}}">{{t "Read more"}}</a>
+    <hr>
+</article>
+{{/foreach}}
